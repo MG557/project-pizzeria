@@ -70,11 +70,13 @@
       const generatedHTML = templates.menuProduct(thisProduct.data);
       
       /* create element using utilis.createElementFromHTML */
-
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+     
       /* find menu container */
+      const menuContainer = document.querySelector(select.containerOf.menu);
 
       /* add element to manu */
-
+      menuContainer.appendChild(thisProduct.element);
 
     }
   
