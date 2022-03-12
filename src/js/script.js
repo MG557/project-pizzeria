@@ -193,7 +193,7 @@
               price += option.price;
             }
           } 
-          
+
           else {
             // check if the option is default
             if(option.default === true) {
@@ -202,7 +202,13 @@
 
             }
           }
-
+          
+          if(formData[paramId] || formData[paramId].includes(optionId)) {
+            if(option.default === true) {
+            
+              price += option.price;
+            }
+          }
 
 
         }
