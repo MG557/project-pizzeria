@@ -212,15 +212,20 @@
               price += option.price;
             }
           }
+          
+          // IMAGE - DISPLAY
+          
           // find option image ... //.paramId-optionId (.toppings-olives)
+          
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-          //.paramId-optionId
-          console.log(optionImage, optionImage);
+          console.log('optionImage', optionImage);
           // add class active
           
           if (optionImage) {
             //optionImage.classList.add('active');
-            
+           
+            // add & remove class ('active')
+           
             if(optionSelected){
               optionImage.classList.add(classNames.menuProduct.imageVisible);
             }
