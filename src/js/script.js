@@ -262,6 +262,7 @@
 
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
     }
     
     getElements(element){
@@ -283,9 +284,18 @@
         thisWidget.value = newValue;
       }
      
-     
+      if (thisWidget.value <= settings.amountWidget.defaultMin){
+        thisWidget.value = settings.amountWidget.defaultMin;
+
+      }
+      if (thisWidget.value >= settings.amountWidget.defaultMax){
+        thisWidget.value = settings.amountWidget.defaultMax;
+
+      }
+
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
+      
 
 
     }
@@ -293,23 +303,22 @@
       const thisWidget = this;
       
 
-      thisWidget.input.addEventListener('chage', function(event) {
-        event.preventDefault();
-        thisWidget.setValue();
+      thisWidget.input.addEventListener('chage', function() {
+        thisWidget.setValue(thisWidget.input.value);
 
       });
            
       
       thisWidget.linkDecrease.addEventListener('click', function(event){
         event.preventDefault();
-        thisWidget.setValue();
-        thisWidget.value -= 1;
+        thisWidget.setValue(thisWidget.value - 1);
+        
       });
 
       thisWidget.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
-        thisWidget.setValue();
-        thisWidget.value += 1;
+        thisWidget.setValue(thisWidget.value + 1);
+        
       });
       
     }
