@@ -42,7 +42,7 @@
 
   const settings = {
     amountWidget: {
-      defaultValue: 1,
+      defaultValue: 3,
       defaultMin: 1,
       defaultMax: 9,
     }
@@ -240,7 +240,9 @@
           
         }
       }
-
+      /* multiply price by amout */
+      price *= thisProduct.amountWidget.value;
+      
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
@@ -249,6 +251,10 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      
+      thisProduct.amountWidgetElem.addEventListener('updated', function() {
+        thisProduct.processOrder();
+      });
     }
   }
   
@@ -261,7 +267,8 @@
       console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      //thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
     
@@ -270,6 +277,7 @@
     
       thisWidget.element = element;
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      //thisWidget.input = thisWidget.element.querySelector(settings.widgets.amount.default);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
@@ -280,22 +288,25 @@
       const newValue = parseInt(value);
 
       /*TODO: Add validation */
-      if(thisWidget.value !== newValue && !isNaN(newValue)){
+      if (thisWidget.value !== newValue && !isNaN(newValue)){
+
         thisWidget.value = newValue;
       }
-     
+      
+        
       if (thisWidget.value <= settings.amountWidget.defaultMin){
         thisWidget.value = settings.amountWidget.defaultMin;
 
       }
+      
       if (thisWidget.value >= settings.amountWidget.defaultMax){
         thisWidget.value = settings.amountWidget.defaultMax;
-
       }
-
-      thisWidget.value = newValue;
+      
+      //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
       
+      thisWidget.announce();
 
 
     }
@@ -305,7 +316,7 @@
 
       thisWidget.input.addEventListener('chage', function() {
         thisWidget.setValue(thisWidget.input.value);
-
+        //thisWidget.setValue(settings.amountWidget.defaultValue);
       });
            
       
@@ -322,7 +333,13 @@
       });
       
     }
-    
+    announce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+
+    }
   }
 
 
