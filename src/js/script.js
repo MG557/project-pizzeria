@@ -42,7 +42,7 @@
 
   const settings = {
     amountWidget: {
-      defaultValue: 3,
+      defaultValue: 1,
       defaultMin: 1,
       defaultMax: 9,
     }
@@ -277,7 +277,6 @@
     
       thisWidget.element = element;
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
-      //thisWidget.input = thisWidget.element.querySelector(settings.widgets.amount.default);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
@@ -288,20 +287,23 @@
       const newValue = parseInt(value);
 
       /*TODO: Add validation */
-      if (thisWidget.value !== newValue && !isNaN(newValue)){
-
+      if (thisWidget.value !== newValue && 
+        !isNaN(newValue) &&
+        newValue >= settings.amountWidget.defaultMin &&
+        newValue <= settings.amountWidget.defaultMax  
+      ){
         thisWidget.value = newValue;
       }
       
         
-      if (thisWidget.value <= settings.amountWidget.defaultMin){
+      /*if (thisWidget.value <= settings.amountWidget.defaultMin){
         thisWidget.value = settings.amountWidget.defaultMin;
 
       }
       
       if (thisWidget.value >= settings.amountWidget.defaultMax){
         thisWidget.value = settings.amountWidget.defaultMax;
-      }
+      }*/
       
       //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
@@ -314,9 +316,9 @@
       const thisWidget = this;
       
 
-      thisWidget.input.addEventListener('chage', function() {
+      thisWidget.input.addEventListener('change', function() {
         thisWidget.setValue(thisWidget.input.value);
-        //thisWidget.setValue(settings.amountWidget.defaultValue);
+        
       });
            
       
