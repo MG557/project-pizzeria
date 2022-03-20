@@ -441,12 +441,12 @@
     }
   }
   
-  // eslint-disable-next-line no-unused-vars
+  
   class Cart{
     constructor(element){
       const thisCart = this;
 
-      thisCart.product = [];
+      thisCart.products = [];
 
       thisCart.getElements(element);
       thisCart.initActions();
@@ -494,9 +494,41 @@
       /* add element to manu */
       thisCart.dom.productList.appendChild(generatedDOM);
 
+      /* add products */
+      //thisCart.products.push(menuProduct);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      console.log('thisCart.products', thisCart.products);
+
     }
   }
   
+  // eslint-disable-next-line no-unused-vars
+  class CartProduct{
+    constructor(menuProduct, element){
+      const thisCartProduct = this;
+      
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.getElements(element);
+      
+      console.log('new CartProduct', thisCartProduct);
+    }
+    
+    getElements(element){
+      const thisCartProduct = this;
+      
+      thisCartProduct.dom = {
+
+        wrapper: element,
+        amountWidget: element.querySelector(select.cartProduct.amountWidget),
+        price: element.querySelector(select.cartProduct.price),
+        edit: element.querySelector(select.cartProduct.edit),
+        remove: element.querySelector(select.cartProduct.remove),
+
+      };
+    }
+
+
+  }
 
   const app = {
     initData: function(){
