@@ -293,7 +293,7 @@
       /* multiply price by amout */
       price *= thisProduct.amountWidget.value;
       // price product per item
-      thisProduct.priceSingle = price;
+      thisProduct.priceSingle = price / thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
