@@ -164,18 +164,7 @@
         //const activeProduct = document.querySelector(classNames.menuProduct.wrapperActive);
         const activeProduct = document.querySelector(select.all.menuProductsActive);
         console.log(activeProduct);
-        
-        /*
-        const select {
-        all: {
-          menuProducts: '#product-list > .product',
-          menuProductsActive: '#product-list > .product.active',
-          formInputs: 'input, select', 
-        }}
-          */
-      
-        
-        
+         
         /* if there is active product and it's not thisProduct.element, remove class active from it */
         if( activeProduct && activeProduct != thisProduct.element ) {
           
@@ -337,9 +326,9 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData', formData);
   
-      // set price to default price
-      //let price = thisProduct.data.price;
+      
       const params = {};
+
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
         
@@ -369,61 +358,10 @@
           if(optionSelected) {
             // option is selected
             params[paramId].option = option.label;
-            
-            /*if(option.default !== true) {
-              // add option price to price variable
-              price += option.price;
-            }*/
           } 
-  
-          /*else {
-            // check if the option is default
-            if(option.default === true) {
-              // reduce price variable
-              price -= option.price;
-            }
-          }*/
-          /*if(formData[paramId]) {
-            if(option.default === true) {
-              
-              price += option.price;
-            }
-          }*/
-           
-          // IMAGE - DISPLAY
-            
-          // find option image ... //.paramId-optionId (.toppings-olives)
-            
-          /* const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-          console.log('optionImage', optionImage);
-          // add class active
-            
-          if (optionImage) {
-            //optionImage.classList.add('active');
-             
-            // add & remove class ('active')
-             
-            if(optionSelected){
-              optionImage.classList.add(classNames.menuProduct.imageVisible);
-            }
-            else if(formData[paramId]){
-              optionImage.classList.remove(classNames.menuProduct.imageVisible);
-            }
-              
-          }*/
-          
         }
       }
-      return params;
-
-      /* multiply price by amout */
-      //price *= thisProduct.amountWidget.value;
-      // price product per item
-      //thisProduct.priceSingle = price;
-      // update calculated price in the HTML
-      //thisProduct.priceElem.innerHTML = price;
-  
-      
+      return params; 
     }
   }
   
@@ -463,17 +401,7 @@
       ){
         thisWidget.value = newValue;
       }
-      
-        
-      /*if (thisWidget.value <= settings.amountWidget.defaultMin){
-        thisWidget.value = settings.amountWidget.defaultMin;
-
-      }
-      
-      if (thisWidget.value >= settings.amountWidget.defaultMax){
-        thisWidget.value = settings.amountWidget.defaultMax;
-      }*/
-      
+       
       //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
       
@@ -557,15 +485,11 @@
       //const generatedHTML = templates.menuProduct(thisProduct.data);
 
       
-      
       /* create element using utilis.createElementFromHTML */
 
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       //thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       
-      
-      /* find menu container */
-      //const menuContainer = document.querySelector(select.containerOf.menu);
 
       /* add element to manu */
       thisCart.dom.productList.appendChild(generatedDOM);
