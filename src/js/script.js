@@ -313,7 +313,7 @@
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle * thisProduct.amountWidget.value, 
 
-        param: thisProduct.prepareCartProductParams(),
+        params: thisProduct.prepareCartProductParams(),
       };
       return productSummary;
     }
@@ -357,7 +357,7 @@
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(optionSelected) {
             // option is selected
-            params[paramId].option = option.label;
+            params[paramId].options[optionId] = option.label;
           } 
         }
       }
