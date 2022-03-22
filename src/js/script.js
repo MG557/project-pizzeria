@@ -502,13 +502,16 @@
     }
   }
   
-  // eslint-disable-next-line no-unused-vars
+ 
   class CartProduct{
     constructor(menuProduct, element){
       const thisCartProduct = this;
       
+      
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.getElements(element);
+      thisCartProduct.initAmountWidget();
+      
       
       console.log('new CartProduct', thisCartProduct);
     }
@@ -526,7 +529,30 @@
 
       };
     }
-
+    initAmountWidget(){
+      const thisCartProduct = this;
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidgetElem);
+      
+      thisCartProduct.dom.amountWidgetElem.addEventListener('updated', function() {
+        //thisCartProduct.processOrder();
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amountWidget.value; 
+        //thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
+      
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+        
+        
+        
+       
+        //thisProduct.priceElem.innerHTML = price;
+        //amount: thisProduct.amountWidget.value,
+        //priceSingle: thisProduct.priceSingle,
+        //price: thisProduct.priceSingle * thisProduct.amountWidget.value, 
+    
+      
+      });
+    }
 
   }
 
