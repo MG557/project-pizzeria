@@ -103,7 +103,7 @@
       thisProduct.processOrder();
       
       
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
   
     renderInMenu(){
@@ -163,7 +163,7 @@
         //const activeProduct = document.querySelectorAll(classNames.menuProduct.wrapperActive);
         //const activeProduct = document.querySelector(classNames.menuProduct.wrapperActive);
         const activeProduct = document.querySelector(select.all.menuProductsActive);
-        console.log(activeProduct);
+        //console.log(activeProduct);
          
         /* if there is active product and it's not thisProduct.element, remove class active from it */
         if( activeProduct && activeProduct != thisProduct.element ) {
@@ -198,7 +198,7 @@
         thisProduct.processOrder();
         thisProduct.addToCart();
       });
-      console.log('processOrder:',thisProduct);
+      //console.log('processOrder:',thisProduct);
     }
   
     
@@ -207,7 +207,7 @@
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -217,7 +217,7 @@
       
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         // for every option in this category
         
@@ -225,10 +225,10 @@
         
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
 
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-          console.log('optionSelected', optionSelected);
+          //console.log('optionSelected', optionSelected);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(optionSelected) {
@@ -260,7 +260,7 @@
           // find option image ... //.paramId-optionId (.toppings-olives)
           
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-          console.log('optionImage', optionImage);
+          //console.log('optionImage', optionImage);
           // add class active
           
           if (optionImage) {
@@ -302,6 +302,7 @@
       //app.cart.add(thisProduct);
       app.cart.add(thisProduct.prepareCartProduct());
       
+      
     }
     prepareCartProduct(){
       const thisProduct = this;
@@ -324,7 +325,7 @@
   
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
   
       
       const params = {};
@@ -334,7 +335,7 @@
         
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
   
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
@@ -349,10 +350,10 @@
           
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
   
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-          console.log('optionSelected', optionSelected);
+          //console.log('optionSelected', optionSelected);
   
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(optionSelected) {
@@ -370,12 +371,13 @@
     constructor(element){
       const thisWidget = this;
       
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      //console.log('AmountWidget:', thisWidget);
+      //console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
       //thisWidget.setValue(thisWidget.input.value);
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      //thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
     
@@ -451,7 +453,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
       
-      console.log('new Cart', thisCart);
+      //console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -461,6 +463,11 @@
         wrapper: element,
         toggleTrigger: element.querySelector(select.cart.toggleTrigger),
         productList: element.querySelector(select.cart.productList),
+        deliveryFee: element.querySelector(select.cart.deliveryFee),
+        subtotalPrice: element.querySelector(select.cart.subtotalPrice), 
+        totalPrice: element.querySelector(select.cart.totalPrice),
+        totalNumber: element.querySelector(select.cart.totalNumber),
+      
       };
 
       //thisCart.dom.wrapper = element;
@@ -476,7 +483,7 @@
     }
     add(menuProduct){
       const thisCart = this;
-      console.log('adding product', menuProduct);
+      //console.log('adding product', menuProduct);
 
 
       /* generate HTML based on template z linii 87*/
@@ -497,9 +504,35 @@
       /* add products */
       //thisCart.products.push(menuProduct);
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      console.log('thisCart.products', thisCart.products);
-
+      //console.log('thisCart.products', thisCart.products);
+      thisCart.update();
     }
+
+    update(){
+      const thisCart = this;
+      
+      let deliveryFee = settings.cart.defaultDeliveryFee;
+      let totalNumber = 0;
+      let subtotalPrice = 0;
+
+      for(let product of thisCart.products){
+        
+        totalNumber = totalNumber + product.amount;
+        subtotalPrice = subtotalPrice + product.price;
+      }
+      if(totalNumber == 0){
+        deliveryFee = 0;
+      }
+      
+      thisCart.totalPrice = subtotalPrice + deliveryFee; 
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice,
+      
+      console.log('totalPrice:', thisCart.totalPrice);
+    }
+      
   }
   
  
@@ -521,7 +554,7 @@
       thisCartProduct.initAmountWidget();
       
       
-      console.log('new CartProduct', thisCartProduct);
+      //console.log('new CartProduct', thisCartProduct);
     }
     
     getElements(element){
@@ -535,6 +568,8 @@
         edit: element.querySelector(select.cartProduct.edit),
         remove: element.querySelector(select.cartProduct.remove),
         //thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+        
+
       };
     }
     initAmountWidget(){
@@ -581,7 +616,7 @@
       //console.log('testProduct:', testProduct);
       
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -590,11 +625,11 @@
     
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
       
       thisApp.initData();
       thisApp.initMenu();
