@@ -492,6 +492,7 @@
 
       thisCart.dom.productList.addEventListener('remove',function(event){
         thisCart.remove(event.detail.cartProduct);
+        console.log('detail:', thisCart.remove);
       });
 
     }
@@ -552,16 +553,17 @@
 
       console.log('totalPrice:', thisCart.totalPrice);
     }
-    remove(event){
+    remove(outProduct){
       const thisCart = this;
-      
-      const CartToRemove = thisCart.products.indexOf(event.detail.cartProduct);
+      console.log('test:', thisCart);
+      const thisCartToRemove = thisCart.products.indexOf(outProduct);
       //const CartToRemove = thisCart.products.indexOf(event);
-      /* const indexOfTravel = categories.indexOf('travel');
-      console.log('indexOfTravel:', indexOfTravel); // indexOfTravel: 1*/
+      /* const indexOfTravel = categories.indexOf('travel');*/
+      console.log('thisCartToRemove:', thisCartToRemove); 
 
-      thisCart.products.splice(CartToRemove, 1);
+      thisCart.products.splice(thisCartToRemove, 1);
       // categories.splice(indexOfFruits, 1);
+      console.log('splice:', thisCart.products);
       
       thisCart.update();
 
