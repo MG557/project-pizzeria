@@ -490,7 +490,7 @@
         thisCart.update();
       });
 
-      thisCart.dom.productList.addEventListener('remove',function(){
+      thisCart.dom.productList.addEventListener('remove',function(event){
         thisCart.remove(event.detail.cartProduct);
       });
 
@@ -556,6 +556,7 @@
       const thisCart = this;
       
       const CartToRemove = thisCart.products.indexOf(event.detail.cartProduct);
+      //const CartToRemove = thisCart.products.indexOf(event);
       /* const indexOfTravel = categories.indexOf('travel');
       console.log('indexOfTravel:', indexOfTravel); // indexOfTravel: 1*/
 
@@ -566,6 +567,7 @@
 
       
     }
+      
       
   }
   
