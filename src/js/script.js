@@ -646,7 +646,8 @@
       });
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
-      
+      thisCartProduct.dom.wrapper.remove();
+
       console.log('remove:',thisCartProduct);
     }
     initActions(){
