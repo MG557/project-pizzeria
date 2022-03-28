@@ -480,6 +480,7 @@
         form: element.querySelector(select.cart.form),
         address: element.querySelector(select.cart.address),
         phone: element.querySelector(select.cart.phone),
+
       };
 
       //thisCart.dom.wrapper = element;
@@ -524,32 +525,34 @@
         products: [],
 
       };
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
+      for(let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        };
       
-      //fetch(url, options);
-      
-      fetch(url, options)
+        fetch(url, options);
+        console.log('options', options);
+        /*fetch(url, options)
         .then(function(response){
           return response.json();
         })
         .then(function(parsedResponse){
           console.log('parsedResponse2:', parsedResponse);
-        });
+        });*/
       
-      for(let prod of thisCart.products) {
-        payload.products.push(prod.getData());
+     
       }
 
-
+     
       console.log('payload:', payload);
     }
-
+    
     add(menuProduct){
       const thisCart = this;
       //console.log('adding product', menuProduct);
@@ -745,9 +748,6 @@
         params: thisProduct.prepareCartProductParams(),
       };
       return productSummary;*/
-
-
-
     }
 
   }
@@ -777,11 +777,13 @@
         });
       console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
+    
     initCart: function(){
       const thisApp = this;
   
       const cartElem = document.querySelector(select.containerOf.cart);
       thisApp.cart = new Cart(cartElem);
+    
     },
     
     initMenu: function(){
