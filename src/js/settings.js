@@ -1,7 +1,7 @@
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
-    cartProduct: '#template-cart-product', // CODE ADDED
+    cartProduct: '#template-cart-product', 
     bookingWidget: '#template-booking-widget',
   },
   containerOf: {
@@ -25,7 +25,7 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount', // CODE CHANGED
+      input: 'input.amount', 
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
