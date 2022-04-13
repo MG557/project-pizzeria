@@ -27,7 +27,7 @@ const app = {
 
     }
     
-    console.log('pageMatchingHash:', pageMatchingHash);
+    //console.log('pageMatchingHash:', pageMatchingHash);
     //thisApp.activatePage(thisApp.pages[0].id);
     //thisApp.activatePage(idFromHash);
     thisApp.activatePage(pageMatchingHash);
