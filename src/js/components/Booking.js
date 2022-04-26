@@ -14,9 +14,44 @@ class Booking{
     thisBooking.getData();
     thisBooking.initTables();
     
+    
+  }
+
+  render(element){
+    const thisBooking = this;
+
+    /* generate HTML based on template */
+    const generatedHTML = templates.bookingWidget();
+      
+    /* create element using utilis.createElementFromHTML */
+    thisBooking.element = utils.createDOMFromHTML(generatedHTML);
+     
+    /* find menu container */
+    const bookingContainer = document.querySelector(select.containerOf.booking);
+
+    /* add element to manu */
+    bookingContainer.appendChild(thisBooking.element).innerHTML;
+
+    thisBooking.dom = {
+     
+      wrapper: element,
+      peopleAmount: element.querySelector(select.booking.peopleAmount),
+      hoursAmount: element.querySelector(select.booking.hoursAmount),
+      datePickerInput: element.querySelector(select.widgets.datePicker.wrapper),
+      hourPickerInput: element.querySelector(select.widgets.hourPicker.wrapper),
+      tables: element.querySelectorAll(select.booking.tables),
+      restaurantPlan: element.querySelector(select.booking.restaurantPlan),
+      phone: element.querySelector(select.cart.phone),
+      address: element.querySelector(select.cart.address),
+      form: element.querySelector(select.cart.form),
+      starters: element.querySelectorAll(select.booking.starter),
+      tableSubmit: element.querySelector(select.booking.tableSubmit)
+    };
+    console.log('restaurantPlan', thisBooking.dom.restaurantPlan);
+    
+    //thisBooking.starters = [];
   }
   
-
   getData(){
     const thisBooking = this;
 
@@ -164,33 +199,7 @@ class Booking{
     }
   }
 
-  render(element){
-    const thisBooking = this;
-
-    /* generate HTML based on template */
-    const generatedHTML = templates.bookingWidget();
-      
-    /* create element using utilis.createElementFromHTML */
-    thisBooking.element = utils.createDOMFromHTML(generatedHTML);
-     
-    /* find menu container */
-    const bookingContainer = document.querySelector(select.containerOf.booking);
-
-    /* add element to manu */
-    bookingContainer.appendChild(thisBooking.element).innerHTML;
-
-    thisBooking.dom = {
-     
-      wrapper: element,
-      peopleAmount: element.querySelector(select.booking.peopleAmount),
-      hoursAmount: element.querySelector(select.booking.hoursAmount),
-      datePickerInput: element.querySelector(select.widgets.datePicker.wrapper),
-      hourPickerInput: element.querySelector(select.widgets.hourPicker.wrapper),
-      tables: element.querySelectorAll(select.booking.tables),
-      restaurantPlan: element.querySelector(select.booking.restaurantPlan),
-    };
-    console.log('restaurantPlan', thisBooking.dom.restaurantPlan);
-  }
+  
   
   initWidgets(){
     const thisBooking = this;
@@ -199,16 +208,6 @@ class Booking{
 
     thisBooking.hoursAmountElement = new AmountWidget(thisBooking.dom.hoursAmount);
    
-    /* 'thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidgetElem);
-  thisCartProduct.dom.amountWidgetElem.addEventListener(setiingupdatedsetiing, function() {
-  thisCartProduct.processOrder();
-  thisCartProduct.amount = thisCartProduct.amountWidget.value;
-    
-  thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amountWidget.value; 
-  thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
-  
-  thisCartProduct.dom.price.innerHTML = thisCartProduct.price;'*/
-
     thisBooking.datePickerInput = new DatePicker(thisBooking.dom.datePickerInput);
 
     thisBooking.hourPickerInput = new HourPicker(thisBooking.dom.hourPickerInput);
@@ -224,6 +223,15 @@ class Booking{
     });
     console.log('widget restaur', thisBooking.dom.restaurantPlan);
     console.log('widget initTables', thisBooking.initTables);*/
+  
+    thisBooking.dom.tableSubmit.addEventListener('submit', function(event){
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
+
+
+  
+  
   }
 
   initTables(){
@@ -315,7 +323,102 @@ class Booking{
 
 
 
+  sendBooking(){
+    const thisBooking = this;
+    const url = settings.db.url + '/' + settings.db.booking;
 
+    const payload = {
+      
+      date: thisBooking.datePickerInput.value,
+      hour: thisBooking.hourPickerInput.value,
+      table: thisBooking.tableId,
+      duration: parseInt(thisBooking.hoursAmountElement.value),
+      ppl: parseInt(thisBooking.peopleAmountElement.value),
+      starters: [],
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value
+    };
+
+    for (let starter of thisBooking.dom.starters){
+      if (starter.checked == true){
+        payload.starters.push(starter.value);
+      }
+    }
+
+    
+
+
+    console.log('payload:', payload);
+
+    thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+    console.log('sendBooking:', thisBooking.makeBooked);
+    
+    
+    
+    
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(parsedResponse){
+        console.log('parsedResponse2:', parsedResponse);
+      });
+
+  }
 
 }
+
+/*sendOrder(){
+    const thisCart = this;
+  
+    const url = settings.db.url + '/' + settings.db.orders;
+  
+    const payload= {
+      address: thisCart.dom.address.value,
+      phone: thisCart.dom.phone.value,
+      totalPrice: thisCart.totalPrice,
+      subtotalPrice: thisCart.subtotalPrice,
+      totalNumber: thisCart.totalNumber,
+      deliveryFee: settings.cart.defaultDeliveryFee,
+      products: [],
+  
+    };
+    for(let prod of thisCart.products) {
+      payload.products.push(prod.getData());
+  
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+        
+      fetch(url, options);
+      console.log('options', options);
+      /*fetch(url, options)
+          .then(function(response){
+            return response.json();
+          })
+          .then(function(parsedResponse){
+            console.log('parsedResponse2:', parsedResponse);
+          });*/
+        
+       
+
+  
+       
+//console.log('payload:', payload);
+  
+
+
+
+
 export default Booking;

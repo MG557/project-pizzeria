@@ -44,6 +44,9 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     restaurantPlan: '.floor-plan',
+    starter: '[name="starter"]',
+    tableSubmit: '.order-confirmation [type="submit"]',
+
   },
   nav: {
     links: '.main-nav a',
