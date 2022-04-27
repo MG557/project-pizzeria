@@ -45,7 +45,11 @@ export const select = {
     tables: '.floor-plan .table',
     restaurantPlan: '.floor-plan',
     starter: '[name="starter"]',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
     tableSubmit: '.order-confirmation [type="submit"]',
+    form: 'booking-form',
+
 
   },
   nav: {
