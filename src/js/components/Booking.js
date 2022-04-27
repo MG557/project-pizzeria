@@ -14,7 +14,7 @@ class Booking{
     thisBooking.getData();
     thisBooking.initTables();
     
-    
+    //thisBooking.starters = [];
   }
 
   render(element){
@@ -342,6 +342,12 @@ class Booking{
     for (let starter of thisBooking.dom.starters){
       if (starter.checked == true){
         payload.starters.push(starter.value);
+        console.log('payload starter', payload.starters);
+
+      } else if (!starter.checked){
+        const starterId = thisBooking.starters.indexOf(starter.value);
+        payload.starters.splice(starterId, 1);
+        console.log('payload !starter', payload.starters);
       }
     }
 
