@@ -1,0 +1,8 @@
+.home-wrapper {
+    margin: ($base-size * 3) auto;
+    padding: ($base-size * 5) ($base-size * 3);
+    background: $color-light;
+    border-bottom: 1px solid lighten($color-dark, 60%);
+    border-radius: $radius;
+  }
+ 
