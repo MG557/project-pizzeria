@@ -1,8 +1,137 @@
 .home-wrapper {
-    margin: ($base-size * 3) auto;
-    padding: ($base-size * 5) ($base-size * 3);
-    background: $color-light;
-    border-bottom: 1px solid lighten($color-dark, 60%);
-    border-radius: $radius;
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.card-buttons {
+  width: auto;
+  position: relative;
+  justify-content: space-between;
+  display: flex;
+
+
+  img {
+    width: $base-size * 23;
+    height: $base-size * 10;
+    object-fit: cover;
+    border-radius: 10px;
+    z-index: 0;
+  }
+
+  a {
+    z-index: 2;
+  }  
+}
+.card-body {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-align: center;
+
+
+  h1 {
+    color: $color-light;
+    font-size: $base-size * 1.5;
+    font-family: $font-header;
+    position: absolute;
+    left: 30%;
+    text-transform: uppercase;
+    z-index: 3;
+    pointer-events: none;
+    transition: $transition;       
+  }
+
+
+  p {
+    color: $color-light;
+    font-family: $font-text;
+    position: absolute;
+    z-index: 3;
+    text-align: center;
+    left: 10%;
+    top: 60%;
+    transition: $transition;
+    visibility: hidden;   
+  }
+}
+
+.card-body:hover {
+  h1 {
+    transform: translateY(-35px);
+  }
+
+
+  p {
+    transform: translateY(-35px);
+    visibility: visible;
+  }
+}
+.card-2 {
+  p {
+    left: 20%;
+  }
+}
+
+.opening-h {
+  background-color: $color-main;
+  border-radius: 5px;
+  width: auto;
+  height: $base-size * 10;
+  color: $color-light;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-family: $font-header;
+  h2 {
+    margin: 0;
+    padding-top: 20px;
   }
  
+}
+/*carousel*/
+.main-carousel {
+  margin-top: $base-size * 10;
+  height: $base-size *16;
+}
+
+.carousel-cell {
+  padding: $base-size;
+}
+.carousel-card {
+  display: flex;
+  justify-content: space-around;
+}
+.carousel-description {
+  flex: 0 0 70%;
+  padding: $base-size * 2;
+  background-color: grey;
+  h2 {
+    font-family: $font-header;
+  }
+  p {
+    font-family: $font-text;
+  }
+}
+.carousel-image img {
+  flex: 0 0 30%;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+/*photos*/
+.photos-album {
+  margin-top: $base-size * 8;
+  display: inline-block;
+  width: 100%;
+}
+.row-photo {
+  display: flex;
+}
+
+
+
+

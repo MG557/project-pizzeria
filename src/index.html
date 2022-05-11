@@ -62,11 +62,11 @@
       </div>
     </div>
   </header>
-
   <!--<div id="product-list" class="product-list container"></div> -->
   <div id="pages">
     <section id="home">
-      <div id="home-id" class="home-wrapper container"></div>
+      <div id="home-id" class="home-wrapper container">
+      </div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -75,32 +75,109 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
-  <script id="template-home-page" type="text/x-handlebars-template">
-  <div class="container">
-    <div class="row card-buttons">
-      <div class="card-1">
-        <div class="card-body">
-          <h1>Order online</h1>
-          <p>Delicious food delivered to your door</p>
-          <a href="#/order" class="btn">
-            <img src="images/assets/pizza-1.jpg" alt"">
-          </a>
+    <script id="template-home-page" type="text/x-handlebars-template">
+    <div class="container">
+      <div class="row card-buttons">
+        <div class="card-1 card">
+          <div class="card-body">
+            <h1>ORDER  ONLINE</h1>
+            <p>Delicious food delivered to your door</p>
+            <a href="#/order" class="btn">
+            <img src="./images/assets/pizza-1.jpg" alt"">
+            </a>
+          </div>
+        </div>
+        <div class="card-2 card">
+          <div class="card-body">
+            <h1>BOOK  A  TABLE</h1>
+            <p>Delicious food awaits you</p>
+            <a href="#/booking" class="btn">
+              <img src="./images/assets/pizza-2.jpg" alt"">
+            </a>
+          </div>
         </div>
       </div>
-      <div class="card-2">
-        <div class="card-body">
-          <h1>Book a table</h1>
-          <p>Delicious food awaits you</p>
-          <a href="#/booking" class="btn">
-            <img src="./images/assets/pizza-2.jpg" alt"">
-          </a>
+      <div class="opening-h container">
+        <h2>OPENING  HOURS</h2>
+        <p>Tue - Sun, 12AM - 12PM </p>
+      <div class="main-carousel">
+        <div class="carousel-cell">
+          <div class="carousel-card">
+            <div class="carousel-image">
+              <img src="./images/assets/pizza-3.jpg">
+            </div>
+            <div class="carousel-description">
+              <h2 class="carousel-tittle">LOREM IPSUM 1</h2>
+              <p>Lorem ipsum - text 1, Loren ipsum - text 1, Loren ipsum - text 1</p>
+              <p>AUTHOR-1</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="carousel-card">
+            <div class="carousel-image">
+              <img src="./images/assets/pizza-3.jpg">
+            </div>
+            <div class="carousel-description">
+              <h2 class="carousel-tittle">LOREM IPSUM 2</h2>
+              <p>Lorem ipsum - text 2, Loren ipsum - text 2, Loren ipsum - text 2</p>
+              <p>AUTHOR-2</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="carousel-card">
+            <div class="carousel-image">
+              <img src="./images/assets/pizza-3.jpg">
+            </div>
+            <div class="carousel-description">
+              <h2 class="carousel-tittle">LOREM IPSUM 3</h2>
+              <p>Lorem ipsum - text 3, Loren ipsum - text 3, Loren ipsum - text 3</p>
+              <p>AUTHOR-3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photos-album">
+        <div class="row-photo">
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-4.jpg">
+            </div>
+          </div>
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-5.jpg">
+            </div>
+          </div>
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-6.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="row-photo">
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-7.jpg">
+            </div>
+          </div>
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-8.jpg">
+            </div>
+          </div>
+          <div class="photos-container">
+            <div class="photo">
+              <img src="./images/assets/pizza-9.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="instagrm">
+          <a href="#" class="instagram-link">VIEW MORE ON INSTAGRAM</a>
         </div>
       </div>
     </div>
-    <div class="opening-h container">
-      <h2>Opening hours</h2>
-    </div>
-  </div>
   </script>
     <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -129,7 +206,6 @@
       </ul>
     </li>
   </script>
-
   <script id="template-menu-product" type="text/x-handlebars-template">
     <article class="product"> <!-- product -->
 
