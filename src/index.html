@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="vendor/flickity.css" media="screen">
+  <link rel="stylesheet" href="vendor/flickity.min.css" media="screen">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -100,7 +100,8 @@
       <div class="opening-h container">
         <h2>OPENING  HOURS</h2>
         <p>Tue - Sun, 12AM - 12PM </p>
-      <div class="main-carousel">
+      </div>
+      <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "autoPlay": true, "prevNextButtons": false  }'>
         <div class="carousel-cell">
           <div class="carousel-card">
             <div class="carousel-image">
@@ -108,8 +109,8 @@
             </div>
             <div class="carousel-description">
               <h2 class="carousel-tittle">LOREM IPSUM 1</h2>
-              <p>Lorem ipsum - text 1, Loren ipsum - text 1, Loren ipsum - text 1</p>
-              <p>AUTHOR-1</p>
+              <p>Lorem ipsum - text 1, Loren ipsum - text 1, Loren ipsum-text 1</p>
+              <p>- AUTHOR-1</p>
             </div>
           </div>
         </div>
@@ -120,8 +121,8 @@
             </div>
             <div class="carousel-description">
               <h2 class="carousel-tittle">LOREM IPSUM 2</h2>
-              <p>Lorem ipsum - text 2, Loren ipsum - text 2, Loren ipsum - text 2</p>
-              <p>AUTHOR-2</p>
+              <p>Lorem ipsum - text 2, Loren ipsum-text 2, Loren ipsum-text 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet magna at eleifend efficitur. </p>
+              <p>- AUTHOR-2</p>
             </div>
           </div>
         </div>
@@ -132,50 +133,77 @@
             </div>
             <div class="carousel-description">
               <h2 class="carousel-tittle">LOREM IPSUM 3</h2>
-              <p>Lorem ipsum - text 3, Loren ipsum - text 3, Loren ipsum - text 3</p>
-              <p>AUTHOR-3</p>
+              <p>Lorem ipsum - text 3, Loren ipsum-text 3, Loren ipsum-text 3</p>
+              <p>- AUTHOR-3</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="photos-album">
-        <div class="row-photo">
-          <div class="photos-container">
-            <div class="photo">
-              <img src="./images/assets/pizza-4.jpg">
+      <div class="wrap">
+        <div class="photos-album">
+          <div class="row-photo">
+            <div class="photos-container">
+              <div class="photo">
+                <img src="./images/assets/pizza-4.jpg">
+                <div class="icon-container">
+                  <a href="#"><i class="fas fa-heart"></i></a>
+                  <a href="#"><i class="fas fa-share-alt"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="photos-container">
+              <div class="photo">
+                <img src="./images/assets/pizza-5.jpg">
+                <div class="icon-container">
+                  <a href="#"><i class="fas fa-heart"></i></a>
+                  <a href="#"><i class="fas fa-share-alt"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="photos-container">
+              <div class="photo">
+                <img src="./images/assets/pizza-6.jpg">
+                <div class="icon-container">
+                  <a href="#"><i class="fas fa-heart"></i></a>
+                  <a href="#"><i class="fas fa-share-alt"></i></a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="photos-container">
-            <div class="photo">
-              <img src="./images/assets/pizza-5.jpg">
+          <div class="row-photo">
+            <div class="photos-container">
+              <div class="photo">
+                <img src="./images/assets/pizza-7.jpg">
+                <div class="icon-container">
+                  <a href="#"><i class="fas fa-heart"></i></a>
+                  <a href="#"><i class="fas fa-share-alt"></i></a>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="photos-container">
-            <div class="photo">
-              <img src="./images/assets/pizza-6.jpg">
-            </div>
-          </div>
-        </div>
-        <div class="row-photo">
-          <div class="photos-container">
-            <div class="photo">
-              <img src="./images/assets/pizza-7.jpg">
-            </div>
-          </div>
           <div class="photos-container">
             <div class="photo">
               <img src="./images/assets/pizza-8.jpg">
+              <div class="icon-container">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-share-alt"></i></a>
+              </div>
             </div>
           </div>
           <div class="photos-container">
             <div class="photo">
               <img src="./images/assets/pizza-9.jpg">
+              <div class="icon-container">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="fas fa-share-alt"></i></a>
+              </div>
             </div>
           </div>
+          </div>
         </div>
-        <div class="instagrm">
-          <a href="#" class="instagram-link">VIEW MORE ON INSTAGRAM</a>
-        </div>
+       
+      </div>
+      <div class="instagram">
+        <a href="#" class="instagram-link">View more on Instagram</a>
       </div>
     </div>
   </script>

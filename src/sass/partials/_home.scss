@@ -1,6 +1,6 @@
 .home-wrapper {
   margin: ($base-size * 3.5) auto;
-  padding: ($base-size * 6) ($base-size * 4);
+  padding: ($base-size * 7) ($base-size * 4);
   background: $color-light;
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
@@ -25,6 +25,7 @@
     z-index: 2;
   }  
 }
+
 .card-body {
   display: flex;
   align-items: center;
@@ -69,6 +70,7 @@
     visibility: visible;
   }
 }
+
 .card-2 {
   p {
     left: 20%;
@@ -85,53 +87,127 @@
   text-align: center;
   position: relative;
   font-family: $font-header;
+
   h2 {
     margin: 0;
     padding-top: 20px;
   }
- 
 }
 /*carousel*/
 .main-carousel {
-  margin-top: $base-size * 10;
+  margin-top: $base-size * 6;
   height: $base-size *16;
 }
 
 .carousel-cell {
   padding: $base-size;
 }
+
 .carousel-card {
   display: flex;
   justify-content: space-around;
 }
+
 .carousel-description {
-  flex: 0 0 70%;
-  padding: $base-size * 2;
-  background-color: grey;
+  flex: 0 0 66%;
+  padding-left: $base-size * 2;
+  color: $color-dark;
+  text-align: left;
+
   h2 {
-    font-family: $font-header;
+    font-family: $font-header; 
   }
+
   p {
     font-family: $font-text;
+    text-transform: none;
   }
 }
+
 .carousel-image img {
-  flex: 0 0 30%;
-  width: 200px;
-  height: 200px;
-  border-radius: 5px;
+  flex: 0 0 33%;
+  padding-left: 5px;
+  width: 95%;
+  height: 95%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 /*photos*/
 .photos-album {
-  margin-top: $base-size * 8;
+  margin-top: $base-size * 9;
   display: inline-block;
   width: 100%;
 }
+
 .row-photo {
   display: flex;
 }
 
+.photos-container {
+  padding: 5px;
+  width: 100%;
+}
 
+.photo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
+  img {
+    height: $base-size * 14;
+    width: $base-size * 14;
+    object-fit: cover;
+    z-index: 0;
+    border-radius: 5px;
+  }
+
+  .icon-container {
+    position: absolute;
+    left: 40%;
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+    z-index: 5;
+    //color: red;
+
+    i {
+      color: $color-light;
+      font-size: $base-size;
+      //background-color: yellow;
+    }
+  }
+}
+
+.photo:hover {
+  .icon-container {
+    visibility: visible;
+    transform: scale(1.8);
+  }
+
+  i:hover {
+    color: $color-main;
+  }
+}
+
+.photo:hover::after {
+  content: '';
+  display: flex;
+  position: absolute;
+  width: $base-size * 14;
+  height: $base-size * 14;
+  background-color: black;
+  z-index: 3;
+  opacity: 0.2;
+
+}
+
+ /*social media*/ 
+.instagram {
+  margin: $base-size;
+  a { 
+    color: $color-main;
+  }
+}
 
