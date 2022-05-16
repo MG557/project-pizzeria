@@ -13,6 +13,7 @@ const app = {
     
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    //thisApp.navLinks = document.querySelectorAll(select.nav.links, select.nav.homeLinks);
     
     
     const idFromHash = window.location.hash.replace('#/', '');
@@ -143,7 +144,8 @@ const app = {
     
   init: function(){
     const thisApp = this;
-     
+    
+    
     thisApp.initPages();
     thisApp.initData();
     //thisApp.initMenu();
