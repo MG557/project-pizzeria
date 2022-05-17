@@ -55,9 +55,9 @@ export const select = {
 
   },
   nav: {
-    //links: '.main-nav a',
-    links: '.container a'
-    //homeLinks: '.card-buttons a',
+    links: '.main-nav a',
+    //links: '.container a'
+    homeLinks: '.card-buttons a',
   },
   
 

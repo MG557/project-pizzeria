@@ -12,9 +12,12 @@ const app = {
 
     
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    //thisApp.navLinks = document.querySelectorAll(select.nav.links);
     //thisApp.navLinks = document.querySelectorAll(select.nav.links, select.nav.homeLinks);
+    //thisApp.navLinks = document.querySelectorAll('select.nav.links, select.nav.homeLinks');
+    thisApp.navLinks = document.querySelectorAll('.main-nav a, .card-buttons a');
     
+    console.log('navLinks', thisApp.navLinks);
     
     const idFromHash = window.location.hash.replace('#/', '');
     
@@ -140,18 +143,19 @@ const app = {
     const thisApp = this;
     const homeElem = document.querySelector(select.containerOf.home);
     thisApp.home = new Home(homeElem);
+
   },
     
   init: function(){
     const thisApp = this;
     
-    
+    thisApp.initHome();
     thisApp.initPages();
     thisApp.initData();
     //thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initHome();
+   
   },
 };
   
